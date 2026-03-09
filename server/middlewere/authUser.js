@@ -25,6 +25,8 @@ function authUser(req, res, next) {
     }
 
     const isMatch = jwt.verify(partAuth[1], process.env.PRIVATE_KEY)
+    console.log(isMatch);
+    
 
     if (!isMatch) {
 
@@ -34,8 +36,11 @@ function authUser(req, res, next) {
 
         })
     }
+    
 
-    req.body['userDetails'] = isMatch['user']    
+    req.payload = isMatch['user'] 
+     
+      
 
     next()
 }

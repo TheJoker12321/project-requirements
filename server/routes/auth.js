@@ -51,11 +51,11 @@ auth.post('/login', async (req, res) => {
 
 auth.get('/me', authUser,(req, res) => {
 
-    const { userDetails } = req.body
+    const { user } = req.payload
 
     res.status(200).json({
 
-        user: userDetails
+        user
 
     })
 
