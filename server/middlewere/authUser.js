@@ -24,9 +24,7 @@ function authUser(req, res, next) {
         })
     }
 
-    const isMatch = jwt.verify(partAuth[1], process.env.PRIVATE_KEY)
-    console.log(isMatch);
-    
+    const isMatch = jwt.verify(partAuth[1], process.env.PRIVATE_KEY)    
 
     if (!isMatch) {
 

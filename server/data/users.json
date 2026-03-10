@@ -1,1 +1,1 @@
-[{"id": 1, "agentCode": "a", "passwordHash": "1234", "fullName": "idan", "role": "admin"}]
+[{"id": 1, "agentCode": "a", "passwordHash": "1234", "fullName": "idan", "role": "admin"}, {"id": 2, "agentCode": "b", "passwordHash": "1234", "fullName": "shlomo", "role": "user"}]

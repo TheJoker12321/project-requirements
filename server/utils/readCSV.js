@@ -1,20 +1,22 @@
 import csv from 'csv-parser'
-import fs from 'fs'
+import { Readable } from 'stream';
 
-const results = [];
+export function loadCSV(buffer) {
 
-export function loadCSV(filepath) {
-  return new Promise((resolve, reject) => {
-    fs
-      .createReadStream(filepath)
-      .pipe(csv({delimiter: ";", columns: true , relax_quotes: true, from_line: 2} ))
-      .on("data", (data) => {
-        
-        results.push(data);
-      })
-      .on("error", (error) => reject(results))
-      .on("end", () => {
-        resolve(results);
-      });
-  });
+    const results = [];
+
+    const stream = Readable.from(buffer)
+    
+    return new Promise((resolve, reject) => {
+        stream
+            .pipe(csv({delimiter: ";", columns: true , relax_quotes: true, from_line: 2} ))
+            .on("data", (data) => {
+            
+                results.push(data);
+            })
+            .on("error", (error) => reject(results))
+            .on("end", () => {
+                resolve(results);
+            });
+    });
 }

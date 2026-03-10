@@ -3,25 +3,7 @@ import path from 'path'
 
 let ext;
 
-const storage = multer.diskStorage({
-
-    destination: function (req, file, cb) {
-        console.log(file);
-        
-
-        cb(null, 'csvFiles')
-    },
-    filename: function (req, file, cb) {
-
-        ext = path.extname(file.originalname)
-        console.log(ext);
-        
-        if (ext === '.csv') {
-
-            cb(null, file.fieldname + ext)
-        }
-    }
-})
+const storage = multer.memoryStorage()
 
 const upload = multer({
 
