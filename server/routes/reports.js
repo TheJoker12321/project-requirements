@@ -12,8 +12,6 @@ const report = express.Router()
 
 
 report.post('/', authUser , uploadImage.single('image'), async (req, res) => {
-
-    console.log(req.body);
     
     const { report } = req.body    
 
@@ -42,7 +40,7 @@ report.post('/', authUser , uploadImage.single('image'), async (req, res) => {
 
         const reportsData = JSON.parse(await fs.promises.readFile('data/reports.json', 'utf-8'))
         reportsData.push(report)
-        await fs.promises.writeFile('data/reports.json', JSON.stringify(reportsData))
+        await fs.promises.writeFile('data/reports.json', JSON.stringify(reportsData, null, 2))
         
         res.status(201).json({
 
@@ -86,7 +84,7 @@ report.post('/csv', authUser, uploadCSV.single('file'), async (req, res) => {
 
     const reportsData = JSON.parse(await fs.promises.readFile('data/reports.json', 'utf-8'))
     const newData = [...reportsData, ...reportsCSV]
-    await fs.promises.writeFile('data/reports.json', JSON.stringify(newData))
+    await fs.promises.writeFile('data/reports.json', JSON.stringify(newData, null, 2))
         res.status(201).json({
             importedCount: reportsCSV.length,
             reports: reportsCSV

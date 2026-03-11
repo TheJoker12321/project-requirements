@@ -2,6 +2,9 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import AgentDashboard from './pages/AgentDashboard'
+import NewReportPage from './pages/NewReportPage'
+import CSVUploadPage from './pages/CSVUploadPage'
+import MyReportsPage from './pages/MyReportsPage'
 
 function App() {
 
@@ -15,9 +18,9 @@ function App() {
             <Route path='agent' element={<AgentDashboard />}/>
           </Route>
           <Route path='agent'>
-            <Route path='sendReports' />
-            <Route path='addCSV'/>
-            <Route path='showReports' />
+            <Route path='sendReports' element={<NewReportPage />}/>
+            <Route path='addCSV' element={<CSVUploadPage />}/>
+            <Route path='showReports' element={<MyReportsPage />}/>
           </Route>
         </Routes>
       </BrowserRouter>

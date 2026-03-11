@@ -4,7 +4,7 @@ function AgentDashboard() {
 
     const navigate = useNavigate()
 
-    function moveToPages(clickEvent) :void {        
+    function moveToPages(clickEvent: string) :void {        
 
         if (clickEvent === 'send') {
 
