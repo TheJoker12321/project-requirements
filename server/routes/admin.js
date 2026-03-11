@@ -96,7 +96,7 @@ admin.get('/users', authUser, async (req, res) => {
     res.status(200).json({
 
         users: data
-        
+
     })
 })
 
