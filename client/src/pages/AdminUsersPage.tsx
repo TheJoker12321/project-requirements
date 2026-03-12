@@ -1,6 +1,20 @@
 import axios from "axios"
 import { useState } from "react"
 
+export type User = {
+
+    id: string,
+    agentCode: string,
+    passwordHash: string,
+    fullName: string,
+    role: string
+}
+
+type UserGet = {
+
+    users: User[]
+}
+
 export type UserRes = {
 
     user: {
@@ -27,6 +41,8 @@ function AdminUsersPage() {
     const [fullName, setFullName] = useState<string>('')
     const [role, setRole] = useState<string>('')
     const [flag, setFlag] = useState<boolean>(false)
+    const [users, setUsers] = useState<User[]>([])
+    const [flagUsers, setFlagUsers] = useState<boolean>(false)
 
     async function createUser(e: React.MouseEvent<HTMLButtonElement>) {
 
@@ -61,6 +77,32 @@ function AdminUsersPage() {
 
     }
 
+    async function getUsers() {
+
+        try {
+        const token = localStorage.getItem('token')
+        const { data } = await axios.get<UserGet>('http://localhost:3003/admin/users', {
+
+            headers: {Authorization: `Bearer ${token}`}
+
+        })
+
+            setUsers(data.users)
+            setFlagUsers(true)
+
+        } catch (err) {
+
+            console.error(err);
+            
+        }
+
+    }
+
+    function hideUsers() {
+
+        setFlagUsers(false)
+    }
+
   return (
     <div>
         <form>
@@ -89,6 +131,22 @@ function AdminUsersPage() {
             </div>
         </form>
         <div>{flag && 'user created successfully'}</div>
+        <div>
+            <h1>Get All Users</h1>
+            <button onClick={flagUsers && hideUsers || getUsers}>{flagUsers && 'Hide users' || 'Get users'}</button>
+        </div>
+        {flagUsers && users.map((userObj, index: number) =>{
+
+            return (
+                <div key={index}>
+                    <div>{userObj.id}</div>
+                    <div>{userObj.agentCode}</div>
+                    <div>{userObj.passwordHash}</div>
+                    <div>{userObj.fullName}</div>
+                    <div>{userObj.role}</div>
+                </div>
+            )
+        })}
     </div>
   )
 }

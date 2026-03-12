@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import type { Error, ResUser } from "./SendReport"
 import axios from "axios"
 
-type DataReports = {
+export type DataReports = {
 
     reports: ResUser[]
 }
@@ -32,7 +32,6 @@ function ShowReports() {
             }
         }
     getReports()
-    console.log(dataReports);
     
     }, [])
 

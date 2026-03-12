@@ -117,16 +117,12 @@ report.get('/', authUser, async (req, res) => {
     
     let resultData;
 
-    console.log(role);
     
     if (!(role === 'admin')) {
-        console.log(id);
         
         resultData = dataReports.filter((reportObj) => reportObj.userId === id)
 
     } else {
-
-        console.log('hi');
         
         if (category) {
             

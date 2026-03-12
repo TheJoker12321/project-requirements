@@ -7,6 +7,7 @@ import CSVUploadPage from './pages/CSVUploadPage'
 import MyReportsPage from './pages/MyReportsPage'
 import AdminDashboard from './pages/AdminDashboard'
 import AdminUsersPage from './pages/AdminUsersPage'
+import AdminReportsPage from './pages/AdminReportsPage'
 
 function App() {
 
@@ -26,7 +27,7 @@ function App() {
           </Route>
           <Route path='admin'>
             <Route path='createUsers' element={<AdminUsersPage />}/>
-            <Route path='searchReports'/>
+            <Route path='searchReports' element={<AdminReportsPage />}/>
           </Route>
         </Routes>
       </BrowserRouter>

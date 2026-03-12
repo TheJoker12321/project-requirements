@@ -50,8 +50,10 @@ admin.post('/users', authUser, async (req, res) => {
         password = createPassword(agentCode)
 
     }
+    
 
-    const hashedPass = createHashPassword(password)
+    const hashedPass = await createHashPassword(password)
+    
     const createId = agentCode + nanoid()
 
     dataUsers.push({
@@ -81,6 +83,8 @@ admin.post('/users', authUser, async (req, res) => {
 })
 
 admin.get('/users', authUser, async (req, res) => {
+
+    const {payload} = req
 
     if (payload.role !== 'admin') {
 
