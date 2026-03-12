@@ -114,15 +114,20 @@ report.get('/', authUser, async (req, res) => {
     const dataUsers = JSON.parse(await fs.promises.readFile('data/users.json', 'utf-8'))
     const { category, urgency, agentCode } = req.query
     const { id ,role } = req.payload
-
+    
     let resultData;
 
-    if (!role === 'admin') {
-
+    console.log(role);
+    
+    if (!(role === 'admin')) {
+        console.log(id);
+        
         resultData = dataReports.filter((reportObj) => reportObj.userId === id)
 
     } else {
 
+        console.log('hi');
+        
         if (category) {
             
             resultData = dataReports.filter((reportObj) => reportObj.category === category)
@@ -162,7 +167,7 @@ report.get('/:id', authUser, async (req, res) => {
 
         return res.status(404).json({
 
-            message: 'wrong id',
+            error: 'wrong id',
 
         })
 

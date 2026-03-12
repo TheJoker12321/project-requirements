@@ -10,7 +10,8 @@ const admin = express.Router()
 
 admin.post('/users', authUser, async (req, res) => {
 
-    const {agentCode, password, fullName, role} = req.body
+    const {agentCode, fullName, role} = req.body
+    let { password } = req.body
     const { payload } = req
 
     if (payload.role !== 'admin') {
@@ -23,7 +24,7 @@ admin.post('/users', authUser, async (req, res) => {
 
     }
 
-    if (role !== 'admin' || role !== 'agent') {
+    if (role !== 'admin' && role !== 'agent') {
 
         return res.status(400).json({
 

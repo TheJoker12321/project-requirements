@@ -3,21 +3,21 @@ import jwt from 'jsonwebtoken'
 function authUser(req, res, next) {
 
     const auth = req.header('Authorization')
-
+    
     if (!auth) {
 
-        res.status(401).json({
+        return res.status(401).json({
 
             error: 'Ubauthorized'
 
         })
-    }
+    }    
 
     const partAuth = auth.split(' ')
 
     if (partAuth[0] !== 'Bearer' || partAuth.length !== 2) {
 
-        res.status(401).json({
+        return res.status(401).json({
 
             error: 'Ubauthorized'
 
@@ -28,7 +28,7 @@ function authUser(req, res, next) {
 
     if (!isMatch) {
 
-        res.status(403).json({
+        return res.status(403).json({
 
             error: 'Ubauthorized'
 

@@ -1,1 +1,1 @@
-[{"id": 1, "agentCode": "a", "passwordHash": "1234", "fullName": "idan", "role": "admin"}, {"id": 2, "agentCode": "b", "passwordHash": "1234", "fullName": "shlomo", "role": "user"}]
+[{"id":1,"agentCode":"a","passwordHash":"1234","fullName":"idan","role":"admin"},{"id":2,"agentCode":"b","passwordHash":"1234","fullName":"shlomo","role":"user"},{"id":"cD9OR5w3QZfMS8E2wjGh-I","agentCode":"c","passwordHash":{},"fullName":"john doe","role":"admin"}]
